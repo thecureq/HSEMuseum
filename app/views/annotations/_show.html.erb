@@ -1,0 +1,7 @@
+<h2> <%= annotation.body  %> </h2>
+
+
+<%= link_to 'Edit', edit_annotation_path(annotation) %>
+<%= link_to 'Destroy', annotation, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<hr>

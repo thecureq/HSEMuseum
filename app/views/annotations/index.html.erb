@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Annotations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>Gallery</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @annotations.each do |annotation| %>
+      <tr>
+        <td><%= annotation.body %></td>
+        <td><%= annotation.gallery_id %></td>
+        <!-- <td> -->
+            <!-- <%= link_to 'Show', annotation %> -->
+          <!-- </td> -->
+        <td>
+          <% if can? :update, Annotation %>
+            <%= link_to 'Edit', edit_annotation_path(annotation) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :destroy, Annotation %>
+            <%= link_to 'Destroy', annotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :create, Annotation %>
+  <%= link_to 'New Annotation', new_annotation_path %>
+<% end %>

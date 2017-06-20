@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Galleries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Teaser</th>
+      <th>Background</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @galleries.each do |gallery| %>
+      <tr>
+        <td><%= gallery.title %></td>
+        <td><%= gallery.teaser %></td>
+        <td><%= gallery.background %></td>
+        <td><%= link_to 'Show', gallery %></td>
+        <td>
+          <% if can? :update, Gallery %>
+            <%= link_to 'Edit', edit_gallery_path(gallery) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :destroy, Gallery %>
+            <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :create, Gallery %>
+  <%= link_to 'New Gallery', new_gallery_path %>
+<% end %>

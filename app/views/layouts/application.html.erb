@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HSEmuseum</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+
+      <div>
+        <%= link_to 'Artists',     artists_url %>
+        <%= link_to 'Artworks',    artworks_url %>
+        <%= link_to 'Galleries',   galleries_url %>
+        <%= link_to 'Annotations', annotations_url %>
+        <%= link_to 'Users',       users_index_url if can? :index, User %>
+
+      </div>
+
+      <div>
+        <% if user_signed_in? %>
+          <%= current_user.email %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Register', new_user_registration_path  %>
+          <%= link_to 'Login', new_user_session_path  %>
+        <% end %>
+      </div>
+
+    </nav>
+    <%= yield %>
+  </body>
+</html>

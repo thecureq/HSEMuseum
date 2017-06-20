@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @artist.name %>
+</p>
+
+<p>
+  <strong>Born:</strong>
+  <%= @artist.born %>
+</p>
+
+<p>
+  <strong>Died:</strong>
+  <%= @artist.died %>
+</p>
+
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>
+
+<hr>
+
+<%= link_to 'New Artwork', new_artwork_path %>
+
+<%#= render 'artworks/index' %>
+
+<% @artworks.each do |artwork| %>
+  <%= render 'artworks/show', artwork: artwork %>
+<% end %>
+
+<%= render 'artworks/form', artwork: Artwork.new %>
